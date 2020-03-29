@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SwimZilla</title>
+    
+    <style>
+
+        html {
+            background-color: lightblue;
+        }
+
+
+        div{ 
+            box-sizing: border-box; 
+        }
+
+        input[type="radio"]{
+        
+            margin-left: 37px;
+            margin-right: 37px;
+        }
+
+        .label{
+            margin: 5px;
+        }
+        
+        .place {
+            width:auto;
+            height: auto;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        .lane{
+            width: auto;
+            height: auto;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 30px;
+            
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: row;
+            width: 600%;
+            transform: rotate(90deg) translateY(-100vh);
+            transform-origin: top left;
+        }
+    </style>
+    
+    
+  
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  
+	<script>
+		$(function() {
+			var col, el;
+			
+			$("input[type=radio]").click(function() {
+			   el = $(this);
+			   col = el.data("col");
+			   $("input[data-col=" + col + "]").prop("checked", false);
+			   el.prop("checked", true);
+			});
+		});
+  </script>
+</head>
+
+
+<body>
+
+    <h1>SwimZilla</h1>
+
+    <table>    
+        <tr>
+        <td><div class="label">Place</div></td>
+        <td><div class="place one">1st</div></td>
+        <td><div class="place two">2nd</div></td>
+        <td><div class="place three">3rd</div></td>
+        <td><div class="place four">4th</div></td>
+        <td><div class="place five">5th</div></td>
+        <td><div class="place six">6th</div></td>
+        </tr>
+
+        <tr>
+        <td><div class="lane one">Lane 1</div></td>
+        <td><input type="radio"  id="oneone" name="lane1" data-col="1"></td>
+        <td><input type="radio"  id="onetwo" name="lane1" data-col="2"></td>
+        <td><input type="radio"  id="onethree" name="lane1" data-col="3"></td>
+        <td><input type="radio" id="onefour" name="lane1" data-col="4"></td>
+        <td><input type="radio"  id="onefive" name="lane1" data-col="5"></td>
+        <td><input type="radio" id="onesix" name="lane1" data-col="6"></td>  
+        <td style="padding-left: 130px"><div style="font-size: 20pt;">Event Type:</div>
+            <select style="font-size: 20pt;" id="eventType" name="eventType"><option value="Individual">Individual</option><option value="Relay">Relay</option></select></td>
+        <td style="padding-left: 150px">
+            <select style="font-size: 20pt;" id="gender" name="gender"><option value="Boys">Boys</option><option value="Girls">Girls</option></select></td>
+        </tr>
+        
+        <tr>
+        <td><div class="lane two">Lane 2</div></td>
+        <td><input type="radio" id="twoone" name="lane2" data-col="1"></td>
+        <td><input type="radio" id="twotwo" name="lane2" data-col="2"></td>
+        <td><input type="radio" id="twothree" name="lane2" data-col="3"></td>
+        <td><input type="radio" id="twofour" name="lane2" data-cole="4"></td>
+        <td><input type="radio" id="twofive" name="lane2" data-col="5"></td>
+        <td><input type="radio" id="twosix" name="lane2" data-col="6"></td>
+        <td><div style="padding-left: 150px; font-size: 22pt;" id="submit" onclick= "score()">Submit</div></td>
+        <td><div style="padding-left: 150px; font-size: 22pt;" id="submit" onclick= "reset()">Reset</div></td>
+        </tr>
+        
+        <tr><form>
+        <td><div class="lane three">Lane 3</div></td>
+        <td><input type="radio" id="threeone" name="lane3" data-col="1"></td>
+        <td><input type="radio" id="threetwo" name="lane3" data-col="2"></td>
+        <td><input type="radio" id="threethree" name="lane3" data-col="3"></td>
+        <td><input type="radio" id="threefour" name="lane3" data-col="4"></td>
+        <td><input type="radio" id="threefive" name="lane3" data-col="5"></td>
+        <td><input type="radio" id="threesix" name="lane3" data-col="6"></td>
+        </form></tr>
+
+        <tr><form>
+        <td><div class="lane four">Lane 4</div></td>
+        <td><input type="radio" id="fourone" name="lane4" data-col="1"></td>
+        <td><input type="radio" id="fourtwo" name="lane4" data-col="2"></td>
+        <td><input type="radio" id="fourthree" name="lane4" data-col="3"></td>
+        <td><input type="radio" id="fourfour" name="lane4" data-col="4"></td>
+        <td><input type="radio" id="fourfive" name="lane4" data-col="5"></td>
+        <td><input type="radio" id="foursix" name="lane4" data-col="6"></td>
+        <td><div style="padding-left: 130px; font-size: 18pt;" id="oddScore">Odd Team</div></td>
+        <td><div style="padding-left: 150px; font-size: 18pt;" id="evenScore">Even Team</div></td>
+        </form></tr>
+
+        <tr><form>
+        <td><div class="lane five">Lane 5</div></td>
+        <td><input type="radio" id="fiveone" name="lane5" data-col="1"></td>
+        <td><input type="radio" id="fivetwo" name="lane5" data-col="2"></td>
+        <td><input type="radio" id="fivethree" name="lane5" data-col="3"></td>
+        <td><input type="radio" id="fivefour" name="lane5" data-col="4"></td>
+        <td><input type="radio" id="fivefive" name="lane5" data-col="5"></td>
+        <td><input type="radio" id="fivesix" name="lane5" data-col="6"></td>
+        <td><div style="padding-left: 70px; font-size: 18pt;" id="boysOddScore">Boys:</div></td>
+        <td><div style="padding-left: 210px; font-size: 18pt;" id="boysEvenScore"></div></td>
+        </form></tr>
+
+        <tr><form>
+        <td><div class="lane six">Lane 6</div></td>
+        <td><input type="radio" id="sixone" name="lane6" data-col="1"></td>
+        <td><input type="radio" id="sixtwo" name="lane6" data-col="2"></td>
+        <td><input type="radio" id="sixthree" name="lane6" data-col="3"></td>
+        <td><input type="radio" id="sixfour" name="lane6" data-col="4"></td>
+        <td><input type="radio" id="sixfive" name="lane6" data-col="5"></td>
+        <td><input type="radio" id="sixsix" name="lane6" data-col="6"></td>
+        <td><div style="padding-left: 70px; font-size: 18pt;" id="girlsOddScore">Girls:</div></td>
+        <td><div style="padding-left: 210px; font-size: 18pt;" id="girlsEvenScore"></div></td>
+        </form></tr>
+    </table>
+    
+</body>
+
+</html>
+
+<script>
+        
+    var boysOdd = 0;
+    var boysEven = 0;
+    var girlsOdd = 0;
+    var girlsEven = 0;
+/*
+    function clear() { 
+      var radioButton = document.getElementsByTagName("radio");
+      radioButton.checked = false; 
+    }*/
+
+    /*function clearAllRadios() {
+    var radList = document.getElementsByName('radioList');
+    for (var i = 0; i < radList.length; i++) {
+      if(radList[i].checked) document.getElementById(radList[i].id).checked = false;
+    }
+  }*/
+
+    function score(){
+      /*clear();*/
+      if (document.getElementById("eventType").value == "Relay"){
+        if (document.getElementById("gender").value == "Boys"){
+            if(document.getElementById("oneone").checked){
+                boysOdd += 8;}
+            if(document.getElementById("onetwo").checked){
+                boysOdd += 4;}
+            if(document.getElementById("onethree").checked){
+                boysOdd += 2;}
+            if(document.getElementById("threeone").checked){
+                boysOdd += 8;}
+            if(document.getElementById("threetwo").checked){
+                boysOdd += 4;}
+            if(document.getElementById("threethree").checked){
+                boysOdd += 2;}
+            if(document.getElementById("fiveone").checked){
+                boysOdd += 8;}
+            if(document.getElementById("fivetwo").checked){
+                boysOdd += 4;}
+            if(document.getElementById("fivethree").checked){
+                boysOdd += 2;}
+            if(document.getElementById("twoone").checked){
+                boysEven += 8;}
+            if(document.getElementById("twotwo").checked){
+                boysEven += 4;}
+            if(document.getElementById("twothree").checked){
+                boysEven += 2;}
+            if(document.getElementById("fourone").checked){
+                boysEven += 8;}
+            if(document.getElementById("fourtwo").checked){
+                boysEven += 4;}
+            if(document.getElementById("fourthree").checked){
+                boysEven += 2;}
+            if(document.getElementById("sixone").checked){
+                boysEven += 8;}
+            if(document.getElementById("sixtwo").checked){
+                boysEven += 4;}
+            if(document.getElementById("sixthree").checked){
+                boysEven += 2;}
+        }
+        if (document.getElementById("gender").value == "Girls"){
+            if(document.getElementById("oneone").checked){
+                girlsOdd += 8;}
+            if(document.getElementById("onetwo").checked){
+                girlsOdd += 4;}
+            if(document.getElementById("onethree").checked){
+                girlsOdd += 2;}
+            if(document.getElementById("threeone").checked){
+                girlsOdd += 8;}
+            if(document.getElementById("threetwo").checked){
+                girlsOdd += 4;}
+            if(document.getElementById("threethree").checked){
+                girlsOdd += 2;}
+            if(document.getElementById("fiveone").checked){
+                girlsOdd += 8;}
+            if(document.getElementById("fivetwo").checked){
+                girlsOdd += 4;}
+            if(document.getElementById("fivethree").checked){
+                girlsOdd += 2;}
+            if(document.getElementById("twoone").checked){
+                girlsEven += 8;}
+            if(document.getElementById("twotwo").checked){
+                girlsEven += 4;}
+            if(document.getElementById("twothree").checked){
+                girlsEven += 2;}
+            if(document.getElementById("fourone").checked){
+                girlsEven += 8;}
+            if(document.getElementById("fourtwo").checked){
+                girlsEven += 4;}
+            if(document.getElementById("fourthree").checked){
+                girlsEven += 2;}
+            if(document.getElementById("sixone").checked){
+                girlsEven += 8;}
+            if(document.getElementById("sixtwo").checked){
+                girlsEven += 4;}
+            if(document.getElementById("sixthree").checked){
+                girlsEven += 2;}
+        }
+      }
+      if (document.getElementById("eventType").value == "Individual"){
+        if (document.getElementById("gender").value == "Boys"){
+            if(document.getElementById("oneone").checked){
+                boysOdd += 6;}
+            if(document.getElementById("onetwo").checked){
+                boysOdd += 4;}
+            if(document.getElementById("onethree").checked){
+                boysOdd += 3;}
+            if(document.getElementById("onefour").checked){
+                boysOdd += 2;}
+            if(document.getElementById("onefive").checked){
+                boysOdd += 1;}
+            if(document.getElementById("threeone").checked){
+                boysOdd += 6;}
+            if(document.getElementById("threetwo").checked){
+                boysOdd += 4;}
+            if(document.getElementById("threethree").checked){
+                boysOdd += 3;}
+            if(document.getElementById("threefour").checked){
+                boysOdd += 2;}
+            if(document.getElementById("threefive").checked){
+                boysOdd += 1;}
+            if(document.getElementById("fiveone").checked){
+                boysOdd += 6;}
+            if(document.getElementById("fivetwo").checked){
+                boysOdd += 4;}
+            if(document.getElementById("fivethree").checked){
+                boysOdd += 3;}
+            if(document.getElementById("fivefour").checked){
+                boysOdd += 2;}
+            if(document.getElementById("fivefive").checked){
+                boysOdd += 1;}
+            if(document.getElementById("twoone").checked){
+                boysEven += 6;}
+            if(document.getElementById("twotwo").checked){
+                boysEven += 4;}
+            if(document.getElementById("twothree").checked){
+                boysEven += 3;}
+            if(document.getElementById("twofour").checked){
+                boysEven += 2;}
+            if(document.getElementById("twofive").checked){
+                boysEven += 1;}
+            if(document.getElementById("fourone").checked){
+                boysEven += 6;}
+            if(document.getElementById("fourtwo").checked){
+                boysEven += 4;}
+            if(document.getElementById("fourthree").checked){
+                boysEven += 3;}
+            if(document.getElementById("fourfour").checked){
+                boysEven += 2;}
+            if(document.getElementById("fourfive").checked){
+                boysEven += 1;}
+            if(document.getElementById("sixone").checked){
+                boysEven += 6;}
+            if(document.getElementById("sixtwo").checked){
+                boysEven += 4;}
+            if(document.getElementById("sixthree").checked){
+                boysEven += 3;}
+            if(document.getElementById("sixfour").checked){
+                boysEven += 2;}
+            if(document.getElementById("sixfive").checked){
+                boysEven += 1;}
+        }
+        if (document.getElementById("gender").value == "Girls"){
+            if(document.getElementById("oneone").checked){
+                girlsOdd += 6;}
+            if(document.getElementById("onetwo").checked){
+                girlsOdd += 4;}
+            if(document.getElementById("onethree").checked){
+                girlsOdd += 3;}
+            if(document.getElementById("onefour").checked){
+                girlsOdd += 2;}
+            if(document.getElementById("onefive").checked){
+                girlsOdd += 1;}
+            if(document.getElementById("threeone").checked){
+                girlsOdd += 6;}
+            if(document.getElementById("threetwo").checked){
+                girlsOdd += 4;}
+            if(document.getElementById("threethree").checked){
+                girlsOdd += 3;}
+            if(document.getElementById("threefour").checked){
+                girlsOdd += 2;}
+            if(document.getElementById("threefive").checked){
+                girlsOdd += 1;}
+            if(document.getElementById("fiveone").checked){
+                girlsOdd += 6;}
+            if(document.getElementById("fivetwo").checked){
+                girlsOdd += 4;}
+            if(document.getElementById("fivethree").checked){
+                girlsOdd += 3;}
+            if(document.getElementById("fivefour").checked){
+                girlsOdd += 2;}
+            if(document.getElementById("fivefive").checked){
+                girlsOdd += 1;}
+            if(document.getElementById("twoone").checked){
+                girlsEven += 6;}
+            if(document.getElementById("twotwo").checked){
+                girlsEven += 4;}
+            if(document.getElementById("twothree").checked){
+                girlsEven += 3;}
+            if(document.getElementById("twofour").checked){
+                girlsEven += 2;}
+            if(document.getElementById("twofive").checked){
+                girlsEven += 1;}
+            if(document.getElementById("fourone").checked){
+                girlsEven += 6;}
+            if(document.getElementById("fourtwo").checked){
+                girlsEven += 4;}
+            if(document.getElementById("fourthree").checked){
+                girlsEven += 3;}
+            if(document.getElementById("fourfour").checked){
+                girlsEven += 2;}
+            if(document.getElementById("fourfive").checked){
+                girlsEven += 1;}
+            if(document.getElementById("sixone").checked){
+                girlsEven += 6;}
+            if(document.getElementById("sixtwo").checked){
+                girlsEven += 4;}
+            if(document.getElementById("sixthree").checked){
+                girlsEven += 3;}
+            if(document.getElementById("sixfour").checked){
+                girlsEven += 2;}
+            if(document.getElementById("sixfive").checked){
+                girlsEven += 1;}
+        } 
+      }   
+            document.getElementById("boysOddScore").innerHTML = "Boys:    " + boysOdd;
+            document.getElementById("boysEvenScore").innerHTML = boysEven;
+            document.getElementById("girlsOddScore").innerHTML = "Girls:    " + girlsOdd;
+            document.getElementById("girlsEvenScore").innerHTML = girlsEven;                    
+        
+    }       
+   
+    function reset(){
+        boysOdd = 0;
+        boysEven = 0;
+        girlsOdd = 0;
+        girlssEven = 0;
+        document.getElementById("boysOddScore").innerHTML = "Boys: ";
+        document.getElementById("boysEvenScore").innerHTML = "";
+        document.getElementById("girlsOddScore").innerHTML = "Girls:    ";
+        document.getElementById("girlsEvenScore").innerHTML = "";}
+
+    
+        
+</script>
